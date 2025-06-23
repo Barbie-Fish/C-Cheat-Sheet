@@ -56,7 +56,7 @@ int main()
             case 4: deleteLek(R, &base); break;		//удаление лекарств по профилю
             case 5: increaseCost(R, base); break;	//увеличение стоимости лекарства на 10%
             case 6: searchByCost(R, base); break;	//найти лекарство по стоимости
-            case 7: loadFromFile("depth1.bin", R, &base); break;		//вывод из бинарного файла
+            case 7: loadFromFile("depth1.bin", R, &base); break;		//вывод из текстового файла
             case 0: printf("Выход из программы...\n"); return 0;		//выход из программы
             default: printf("Некорректный выбор. Попробуйте снова.\n");	//если нет такого номера в списке
         }
@@ -140,7 +140,7 @@ void printTable(Spravochnik R[], int base) 			//вывод на экран всех записей в ви
     
     for (int i = 0; i < base; i++) 
 	{
-        printf("| %-13s | %-11s | %-13s | %-19s | %-13s | %-9.2f |\n",
+        printf("| %-13s | %-14s | %-13s | %-19s | %-13s | %-9.2f |\n",
             	R[i].nazvanie, R[i].profil, R[i].proizvoditel, R[i].pokazaniya, R[i].dozirovki, R[i].stoimost);
     }
     
@@ -188,36 +188,6 @@ void deleteRecord(Spravochnik R[], int *base) 	//удаление записей по номеру
         printf("Нет записей для удаления.\n");
     }
 }
-/*
-void deleteRecord(Spravochnik R[], int *base) 		//удаление записей по номеру
-{
-    int numb, i;
-    if (*base > 0) 
-	{
-        printf("Введите номер записи: ");
-        scanf("%d", &numb);
-
-        if (numb < 1 || numb > *base) 				//если нет такой записи
-		{
-            printf("Ошибка: Неверный номер записи.\n");
-            return;
-        }
-
-        for (i = numb - 1; i < *base - 1; i++) 		//само удаление записи
-		{
-            R[i] = R[i + 1];						//замена одной записи на следующую
-        }
-        
-        (*base)--;									//уменьшение номера на 1
-        
-        printf("Запись успешно удалена.\n");
-    } 
-	else 											//если нет записей
-	{
-        printf("Нет записей для удаления.\n");
-    }
-}
-*/
 
 void deleteLek(Spravochnik R[], int *base) 			//удаление лекарств по профилю
 {
@@ -306,7 +276,7 @@ void searchByCost(Spravochnik R[], int base) 		//найти лекарство по стоимости
 	{
         if (R[i].stoimost >= min && R[i].stoimost <= max) 
 		{
-            printf("| %-13s | %-11s | %-13s | %-15s | %-13s | %-9.2f |\n",
+            printf("| %-13s | %-14s | %-13s | %-15s | %-13s | %-9.2f |\n",
             	R[i].nazvanie, R[i].profil, R[i].proizvoditel, R[i].pokazaniya, R[i].dozirovki, R[i].stoimost);
             found = 1;
         }
